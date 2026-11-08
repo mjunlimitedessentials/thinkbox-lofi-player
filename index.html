@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lo-Fi for Relaxation | Lo-fi@thinkboxaistudios.com</title>
+<meta name="description" content="Lo-Fi for Relaxation, instrumental lo-fi music inspired by Christian music. An album by Lo-fi@thinkboxaistudios.com." />
+<meta property="og:title" content="Lo-Fi for Relaxation | Lo-fi@thinkboxaistudios.com" />
+<meta property="og:description" content="Instrumental lo-fi music inspired by Christian music. An album by Lo-fi@thinkboxaistudios.com." />
+<meta property="og:type" content="music.album" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#f6efe2; --sand-2:#efe4d1; --ink:#2e3a32; --ink-soft:#5d6b60;
+    --sage:#7f9b7a; --sage-deep:#4f6a54; --terracotta:#c2805f; --gold:#c9a227;
+    --cassette:#3b3128; --cassette-2:#2b241d;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif; color:var(--ink);
+    background:
+      radial-gradient(1100px 620px at 18% -8%, #fff9ec 0%, rgba(255,249,236,0) 62%),
+      radial-gradient(900px 520px at 88% 4%, #eef3ea 0%, rgba(238,243,234,0) 60%),
+      linear-gradient(168deg,#f8f2e6 0%, #f1e7d6 46%, #e9dfcd 100%);
+    min-height:100vh; -webkit-font-smoothing:antialiased; padding:34px 20px 46px;
+  }
+  .drift{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .drift i{position:absolute;display:block;border-radius:50%;filter:blur(38px);opacity:.55}
+  .drift i:nth-child(1){width:420px;height:420px;left:-90px;top:-90px;background:#ffe9c4;animation:float1 24s ease-in-out infinite}
+  .drift i:nth-child(2){width:360px;height:360px;right:-70px;top:120px;background:#dcebdd;animation:float2 30s ease-in-out infinite}
+  .drift i:nth-child(3){width:380px;height:380px;left:38%;bottom:-160px;background:#f6d9c6;animation:float1 34s ease-in-out infinite reverse}
+  @keyframes float1{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(30px,26px,0)}}
+  @keyframes float2{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-26px,34px,0)}}
+
+  .stage{position:relative;z-index:1;max-width:1080px;margin:0 auto;display:grid;gap:26px;
+    grid-template-columns:1.02fr .98fr;align-items:start}
+  @media (max-width:900px){.stage{grid-template-columns:1fr}}
+
+  .kicker{display:flex;justify-content:space-between;align-items:center;font-size:10px;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+  .kicker b{font-weight:500;letter-spacing:.22em}
+
+  .card{background:rgba(255,252,245,.78);border:1px solid rgba(46,58,50,.12);border-radius:22px;
+    box-shadow:0 26px 60px -34px rgba(46,58,50,.5), 0 2px 0 rgba(255,255,255,.7) inset;
+    backdrop-filter:blur(8px)}
+
+  /* ---------- cassette deck ---------- */
+  .deck{padding:22px 22px 18px;position:relative;overflow:hidden}
+  .deck::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0) 28%)}
+  .album-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.02;
+    font-size:clamp(30px,4.4vw,46px);letter-spacing:-.015em;margin:2px 0 6px}
+  .album-sub{font-size:12.5px;color:var(--ink-soft);letter-spacing:.06em;margin:0 0 4px}
+  .album-meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px}
+  .pill{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:999px;
+    border:1px solid rgba(46,58,50,.18);color:var(--ink-soft);background:rgba(255,255,255,.55)}
+
+  .cassette{position:relative;border-radius:16px;padding:14px;
+    background:linear-gradient(160deg,var(--cassette),var(--cassette-2));
+    box-shadow:0 18px 34px -20px rgba(43,36,29,.85), 0 0 0 1px rgba(255,255,255,.06) inset}
+  .cassette .stripe{height:6px;border-radius:3px;margin:0 2px 12px;
+    background:linear-gradient(90deg,var(--gold) 0%, var(--terracotta) 46%, var(--sage) 100%);opacity:.85}
+  .window{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;
+    background:linear-gradient(180deg,#201a15,#171310);border-radius:10px;padding:12px 14px;
+    border:1px solid rgba(255,255,255,.07)}
+  .reel{width:56px;height:56px;border-radius:50%;position:relative;margin:0 auto;
+    background:radial-gradient(circle at 50% 50%, #241d18 0 34%, #0f0c0a 35% 100%);
+    box-shadow:0 0 0 2px rgba(255,255,255,.08) inset}
+  .reel::before{content:"";position:absolute;inset:14px;border-radius:50%;
+    background:repeating-conic-gradient(from 0deg,#d9c9a8 0deg 26deg,#8f7d5e 26deg 52deg);
+    opacity:.85}
+  .reel::after{content:"";position:absolute;inset:23px;border-radius:50%;background:#1b1612;
+    box-shadow:0 0 0 2px rgba(217,201,168,.5)}
+  .spinning .reel::before{animation:spin 3.6s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .tape-gap{width:74px;height:10px;border-radius:6px;background:#0f0c0a;
+    box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;position:relative}
+  .tape-gap::after{content:"";position:absolute;inset:3px 6px;border-radius:4px;
+    background:repeating-linear-gradient(90deg,rgba(217,201,168,.5) 0 3px,transparent 3px 7px)}
+
+  .controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  button,label.load{font-family:inherit;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 16px;border-radius:999px;border:1px solid rgba(46,58,50,.22);background:rgba(255,255,255,.7);
+    color:var(--ink);cursor:pointer;transition:transform .16s ease, background .16s ease, box-shadow .16s ease}
+  button:hover,label.load:hover{transform:translateY(-1px);background:#fff;box-shadow:0 10px 18px -12px rgba(46,58,50,.6)}
+  button:disabled{opacity:.42;cursor:not-allowed;transform:none;box-shadow:none}
+  #play{background:linear-gradient(180deg,#5d7d61,#47634d);border-color:#44604a;color:#f7f2e7;
+    display:inline-flex;align-items:center;gap:9px}
+  #play .dot{width:7px;height:7px;border-radius:50%;background:#f3e3bd;box-shadow:0 0 0 3px rgba(243,227,189,.24)}
+  .playing #play .dot{animation:pulse 1.5s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+  #file{display:none}
+  .note{margin:14px 0 0;font-size:11.5px;line-height:1.6;color:var(--ink-soft)}
+  .note b{color:var(--ink);font-weight:500}
+
+  /* ---------- side panel ---------- */
+  .side{display:grid;gap:18px}
+  .panel{padding:22px}
+  .panel h2{margin:0 0 12px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;
+    font-size:20px;letter-spacing:.01em}
+  .panel h2 .tiny{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:5px;font-weight:400}
+
+  .tracklist{display:grid;gap:6px}
+  .track{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;
+    padding:11px 12px;border-radius:12px;border:1px solid transparent;background:rgba(255,255,255,.5);
+    text-align:left;letter-spacing:0;text-transform:none;font-size:13.5px;color:var(--ink);
+    transition:background .16s ease, border-color .16s ease, transform .16s ease}
+  .track:hover{background:#fff;border-color:rgba(46,58,50,.14);transform:translateY(-1px)}
+  .track.active{background:rgba(127,155,122,.16);border-color:rgba(79,106,84,.4)}
+  .track .n{font-size:10.5px;color:var(--ink-soft);letter-spacing:.08em}
+  .track .t{font-weight:400}
+  .track .d{font-size:11px;color:var(--ink-soft)}
+  .track.active .n,.track.active .d{color:var(--sage-deep)}
+  .empty{padding:16px 14px;border-radius:12px;border:1px dashed rgba(46,58,50,.22);
+    background:rgba(255,255,255,.42);font-size:12.5px;line-height:1.65;color:var(--ink-soft)}
+  .empty b{color:var(--ink);font-weight:500}
+
+  .verse{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.55;color:var(--ink)}
+  .verse span{display:block;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+  .about{font-size:12.5px;line-height:1.7;color:var(--ink-soft);margin:0}
+  .about + .about{margin-top:10px}
+
+  .status{font-size:11px;letter-spacing:.08em;color:var(--ink-soft);margin-top:12px;min-height:15px}
+
+  footer{max-width:1080px;margin:26px auto 0;display:flex;flex-wrap:wrap;gap:12px;
+    justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-soft);position:relative;z-index:1}
+  footer a{color:var(--sage-deep);text-decoration:none;border-bottom:1px solid rgba(79,106,84,.4);
+    padding-bottom:1px}
+  footer a:hover{color:var(--ink);border-color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="drift" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<main class="stage">
+  <section class="card deck" id="deck">
+    <div class="kicker"><b>ThinkBox AI Studios</b><span>Side B · 2026</span></div>
+
+    <h1 class="album-title">Lo-Fi for Relaxation</h1>
+    <p class="album-sub">Instrumental lo-fi, inspired by Christian music</p>
+    <div class="album-meta">
+      <span class="pill">Lo-fi@thinkboxaistudios.com</span>
+      <span class="pill">Instrumental</span>
+      <span class="pill">Volume 1</span>
+    </div>
+
+    <div class="cassette" id="cassette">
+      <div class="stripe"></div>
+      <div class="window">
+        <div class="reel"></div>
+        <div class="tape-gap"></div>
+        <div class="reel"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="play" disabled><span class="dot"></span><span id="playLabel">Press play</span></button>
+      <button id="prev" disabled>Prev</button>
+      <button id="next" disabled>Next</button>
+      <label class="load" for="file">Load a track</label>
+      <input type="file" id="file" accept="audio/*" />
+    </div>
+
+    <p class="note" id="status">Volume 1 is still being recorded. Nothing to play yet.</p>
+  </section>
+
+  <div class="side">
+    <section class="card panel">
+      <h2><span class="tiny">The album</span>Tracklist</h2>
+      <div class="tracklist" id="tracklist"></div>
+      <div class="empty" id="empty">
+        <b>Volume 1 is open.</b> As each instrumental is finished, it lands here in order.
+        Send a track and it gets added to this album, not the vocal one.
+      </div>
+    </section>
+
+    <section class="card panel">
+      <h2><span class="tiny">Mood</span>Why this album exists</h2>
+      <p class="about">Quiet music for the in-between hours. No words, no rush, just a soft bed of sound
+        for prayer, study, the drive home, or the ten minutes before sleep.</p>
+      <p class="about">Built from the same faith that shapes the vocal record, but instrumental only, so it can
+        sit under your workday without asking for attention.</p>
+      <div class="verse" style="margin-top:16px">
+        “Be still, and know that I am God.”
+        <span>Psalm 46:10</span>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Lo-fi@thinkboxaistudios.com · All rights reserved</span>
+  <span><a href="mailto:Lo-fi&#64;thinkboxaistudios.com">Lo-fi@thinkboxaistudios.com</a></span>
+  <span><a href="https://aswesing.mjunlimitedessentialmktg.com/">Vocal album: As We Sing This Song</a></span>
+</footer>
+
+<script>
+(function(){
+  const TRACKS = [];
+  const player = new Audio();
+  player.preload = 'metadata';
+
+  const deck = document.getElementById('deck');
+  const cassette = document.getElementById('cassette');
+  const playBtn = document.getElementById('play');
+  const playLabel = document.getElementById('playLabel');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const fileInput = document.getElementById('file');
+  const statusEl = document.getElementById('status');
+  const listEl = document.getElementById('tracklist');
+  const emptyEl = document.getElementById('empty');
+
+  let currentIdx = null, playing = false, localMode = false, localLabel = '';
+
+  const fmt = s => {
+    if (!isFinite(s)) return '0:00';
+    const m = Math.floor(s / 60), r = Math.floor(s % 60);
+    return m + ':' + String(r).padStart(2, '0');
+  };
+
+  /* album tracks are pulled from tracks.json, same pattern as the vocal record */
+  fetch('tracks.json', {cache:'no-store'})
+    .then(r => r.ok ? r.json() : [])
+    .then(list => {
+      (Array.isArray(list) ? list : []).forEach(t => TRACKS.push(t));
+      render();
+      if (TRACKS.length){ load(0, false); }
+    })
+    .catch(() => render());
+
+  function render(){
+    listEl.innerHTML = '';
+    if (TRACKS.length) emptyEl.style.display = 'none';
+    TRACKS.forEach((t, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'track';
+      b.dataset.idx = i;
+      b.innerHTML = '<span class="n">' + String(i + 1).padStart(2, '0') + '</span>' +
+                    '<span class="t">' + t.title + '</span>' +
+                    '<span class="d">' + (t.length || '') + '</span>';
+      b.addEventListener('click', () => load(i, playing));
+      listEl.appendChild(b);
+    });
+    const none = TRACKS.length === 0;
+    playBtn.disabled = none && !localMode;
+    prevBtn.disabled = TRACKS.length < 2;
+    nextBtn.disabled = TRACKS.length < 2;
+    markActive();
+  }
+
+  function markActive(){
+    listEl.querySelectorAll('.track').forEach(b => {
+      b.classList.toggle('active', !localMode && Number(b.dataset.idx) === currentIdx);
+    });
+  }
+
+  function load(i, autoplay){
+    const t = TRACKS[i];
+    if (!t) return;
+    currentIdx = i;
+    localMode = false;
+    player.src = 'tracks/' + t.file;
+    playBtn.disabled = false;
+    statusEl.textContent = 'Track ' + (i + 1) + ' of ' + TRACKS.length + ' · ' + t.title + (t.length ? ' · ' + t.length : '');
+    markActive();
+    if (autoplay) play();
+  }
+
+  function play(){
+    localMode ? null : null;
+    player.play().then(() => {
+      playing = true;
+      deck.classList.add('playing');
+      cassette.classList.add('spinning');
+      playLabel.textContent = 'Pause';
+    }).catch(() => {
+      statusEl.textContent = 'Tap play to start the tape.';
+    });
+  }
+
+  function pause(){
+    player.pause();
+    playing = false;
+    deck.classList.remove('playing');
+    cassette.classList.remove('spinning');
+    playLabel.textContent = 'Play';
+  }
+
+  playBtn.addEventListener('click', () => {
+    if (!player.src){ statusEl.textContent = 'No track loaded yet.'; return; }
+    playing ? pause() : play();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (!TRACKS.length) return;
+    const i = currentIdx === null ? 0 : (currentIdx - 1 + TRACKS.length) % TRACKS.length;
+    load(i, playing);
+  });
+  nextBtn.addEventListener('click', () => {
+    if (!TRACKS.length) return;
+    const i = currentIdx === null ? 0 : (currentIdx + 1) % TRACKS.length;
+    load(i, playing);
+  });
+
+  player.addEventListener('ended', () => {
+    if (TRACKS.length > 1) { nextBtn.click(); return; }
+    pause();
+  });
+
+  player.addEventListener('timeupdate', () => {
+    if (!playing || !player.duration) return;
+    const name = localMode ? localLabel : (TRACKS[currentIdx] ? TRACKS[currentIdx].title : '');
+    statusEl.textContent = name + ' · ' + fmt(player.currentTime) + ' / ' + fmt(player.duration);
+  });
+
+  fileInput.addEventListener('change', e => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    localMode = true;
+    localLabel = f.name.replace(/\.[^.]+$/, '');
+    player.src = URL.createObjectURL(f);
+    markActive();
+    playBtn.disabled = false;
+    statusEl.textContent = 'Previewing ' + localLabel + ' from this device only.';
+    play();
+  });
+})();
+</script>
+</body>
+</html>
